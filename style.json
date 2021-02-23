@@ -42,7 +42,7 @@
         "niaes_network_line": {
             "type": "vector",
             "tiles": [
-                "https://arctictern265.github.io/network/{z}/{x}/{y}.pbf"
+                "network/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 15
         },
@@ -58,7 +58,7 @@
         "envpoints_basin": {
             "type": "vector",
             "tiles": [
-                "https://arctictern265.github.io/envpoints_basin/{z}/{x}/{y}.pbf"
+                "envpoints_basin/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 16,
             "minzoom": 8
