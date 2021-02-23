@@ -1,0 +1,246 @@
+{
+    "version": 8,
+    "name": "niaes_rivdb_style",
+    "center": [
+        133.844,
+        34.244
+    ],
+    "zoom": 11,
+    "bearing": 0,
+    "pitch": 0,
+    "sprite": "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/sprite/sprite",
+    "glyphs": "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/font/{fontstack}/{range}.pbf",
+    "sources": {
+        "pale-tiles": {
+            "type": "raster",
+            "tiles": [
+                "https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png"
+            ],
+            "tileSize": 256
+        },
+        "std-tiles": {
+            "type": "raster",
+            "tiles": [
+                "https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png"
+            ],
+            "tileSize": 256
+        },
+        "blank-tiles": {
+            "type": "raster",
+            "tiles": [
+                "https://cyberjapandata.gsi.go.jp/xyz/blank/{z}/{x}/{y}.png"
+            ],
+            "tileSize": 256
+        },
+        "photo-tiles": {
+            "type": "raster",
+            "tiles": [
+                "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg"
+            ],
+            "tileSize": 256
+        },
+        "niaes_network_line": {
+            "type": "vector",
+            "tiles": [
+                "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/network_all/{z}/{x}/{y}.pbf"
+            ],
+            "maxzoom": 15
+        },
+        "envpoints": {
+            "type": "vector",
+            "tiles": [
+                "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/envpoints/{z}/{x}/{y}.pbf"
+            ],
+            "maxzoom": 15,
+            "minzoom": 1,
+            "tolerance": 0
+        },
+        "envpoints_basin": {
+            "type": "vector",
+            "tiles": [
+                "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/envpoints_basin/{z}/{x}/{y}.pbf"
+            ],
+            "maxzoom": 16,
+            "minzoom": 8
+        }
+    },
+    "layers": [
+        {
+            "id": "pale-tiles",
+            "type": "raster",
+            "source": "pale-tiles",
+            "minzoom": 0,
+            "maxzoom": 22,
+            "layout": {
+                "visibility": "visible"
+            }
+        },
+        {
+            "id": "std-tiles",
+            "type": "raster",
+            "source": "std-tiles",
+            "minzoom": 0,
+            "maxzoom": 22,
+            "layout": {
+                "visibility": "none"
+            }
+        },
+        {
+            "id": "blank-tiles",
+            "type": "raster",
+            "source": "blank-tiles",
+            "minzoom": 0,
+            "maxzoom": 22,
+            "layout": {
+                "visibility": "none"
+            }
+        },
+        {
+            "id": "photo-tiles",
+            "type": "raster",
+            "source": "photo-tiles",
+            "layout": {
+                "visibility": "none"
+            }
+        },
+        {
+            "id": "niaes_network_line",
+            "type": "line",
+            "source": "niaes_network_line",
+            "source-layer": "network",
+            "layout": {
+                "line-cap": "square",
+                "line-join": "round"
+            },
+            "paint": {
+                "line-color": "hsl(240, 100%, 48%)",
+                "line-width": 2
+            }
+        },
+        {
+            "id": "niaes_network_text",
+            "type": "symbol",
+            "source": "niaes_network_line",
+            "source-layer": "network",
+            "layout": {
+                "text-field": [
+                    "to-string",
+                    [
+                        "get",
+                        "rivname"
+                    ]
+                ],
+                "text-font": [
+                    "IPAexGothic Regular"
+                ],
+                "text-size": 24.0,
+                "symbol-placement": "line",
+                "text-offset": [
+                    0,
+                    0.5
+                ],
+                "text-allow-overlap": true
+            },
+            "paint": {
+                "text-color": "hsl(240, 100%, 38%)",
+                "text-halo-color": "hsl(0, 0%, 100%)",
+                "text-halo-width": 2.0
+            }
+        },
+        {
+            "id": "niaes_network_arrow",
+            "type": "symbol",
+            "source": "niaes_network_line",
+            "source-layer": "network",
+            "layout": {
+                "symbol-placement": "line-center",
+                "icon-size": 0.5,
+                "icon-image": "arrow",
+                "icon-allow-overlap": true,
+                "icon-rotate": 90,
+                "icon-ignore-placement": true,
+                "text-allow-overlap": true,
+                "symbol-spacing": 100
+            },
+            "paint": {}
+        },
+        {
+            "id": "envpoints",
+            "type": "symbol",
+            "source": "envpoints",
+            "source-layer": "envpoints",
+            "layout": {
+                "icon-image": [
+                    "case",
+                    [
+                        "==",
+                        [
+                            "to-string",
+                            [
+                                "get",
+                                "CHITENFLAG"
+                            ]
+                        ],
+                        "1"
+                    ],
+                    "envpoints_main",
+                    [
+                        "case",
+                        [
+                            "==",
+                            [
+                                "to-string",
+                                [
+                                    "get",
+                                    "CHITENFLAG"
+                                ]
+                            ],
+                            "2"
+                        ],
+                        "envpoints_sub",
+                        "envpoints_uncat"
+                    ]
+                ],
+                "icon-size": 0.5,
+                "icon-ignore-placement": true,
+                "icon-anchor": "bottom",
+                "icon-padding": 0,
+                "text-field": [
+                    "to-string",
+                    [
+                        "get",
+                        "LOCATIONNA"
+                    ]
+                ],
+                "icon-allow-overlap": true,
+                "text-allow-overlap": true,
+                "text-anchor": "bottom-left",
+                "text-offset": [
+                    1.0,
+                    -1.0
+                ],
+                "text-font": [
+                    "IPAexGothic Regular"
+                ],
+                "symbol-spacing": 1
+            },
+            "paint": {
+                "text-halo-width": 3.0,
+                "text-halo-color": "hsl(0, 0%, 100%)"
+            }
+        },
+        {
+            "id": "envpoints_basin",
+            "type": "fill",
+            "source": "envpoints_basin",
+            "source-layer": "envpoints_basin",
+            "layout": {
+                "visibility": "none"
+            },
+            "paint": {
+                "fill-color": "#a000bd",
+                "fill-opacity": 0.6
+            }
+        }
+    ]
+}

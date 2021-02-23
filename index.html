@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Add a raster tile source</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #menu {
+      background: #fff;
+      position: absolute;
+      z-index: 1;
+      top: 10px;
+      left: 10px;
+      width: 120px;
+      border: 1px solid #000;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    #attr {
+      background: #fff;
+      position: absolute;
+      z-index: 1;
+      top: 10px;
+      right: 10px;
+      width: 400px;
+      border: none;
+      font-family: 'Open Sans', sans-serif;
+      overflow: auto;
+      display: none;
+    }
+
+    #attr_key {
+      width: 180px;
+    }
+
+    #attr_val {
+      width: 220px;
+    }
+
+    table {
+      border: solid 1px #000000;
+      border-collapse: collapse;
+      border-spacing: 0;
+      margin: 0;
+    }
+
+    tbody {
+      white-space: nowrap;
+    }
+
+    td {
+      border: 1px solid;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <nav id="menu">
+    <input type="radio" id="pale-tiles" name="map_select" value="pale-tiles" onChange="onBgmapChanged()" checked />
+    <label for="pale-tiles">淡色地図</label><br />
+    <input type="radio" id="std-tiles" name="map_select" value="std-tiles" onChange="onBgmapChanged()" />
+    <label for="std-tiles">標準地図</label><br />
+    <input type="radio" id="blank-tiles" name="map_select" value="blank-tiles" onChange="onBgmapChanged()" />
+    <label for="blank-tiles">白地図</label><br />
+    <input type="radio" id="photo-tiles" name="map_select" value="photo-tiles" onChange="onBgmapChanged()" />
+    <label for="photo-tiles">空中写真</label><br />
+    <input id="riverline" class="disp_layer" type="checkbox" name="layers" value="riverline" checked="checked"
+      onchange="toggleVisible(this)">
+    <label for="riverline">河川</label><br />
+    <input id="envpoints" class="disp_layer" type="checkbox" name="layers" value="envpoints" checked="checked"
+      onchange="toggleVisible(this)">
+    <label for="envpoints">環境基準点</label><br />
+    <input id="basins" class="disp_layer" type="checkbox" name="layers" value="basins" checked="checked"
+      onchange="toggleVisible(this)">
+    <label for="basins">検索支流域</label><br />
+  </nav>
+  <div id="attr"></div>
+  <script>
+    var bOnEnvpoint = false;
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoieWFtYXRlIiwiYSI6ImNranJqN25rcDBhYnkyemp4b2w0aTZxcjYifQ.fNbZd9oiJOf79Qpfa-UNUw';
+    var map = new mapboxgl.Map({
+      container: 'map', // container id
+      style: './style.json',
+    });
+
+    map.on('click', 'envpoints', function (e) {
+      if (e.features.length > 0) {
+        var attr_div = document.getElementById("attr")
+        attr_div.style.bottom = '10px'
+        attr_div.style.display = 'block'
+        var abs_no = -1
+        var html_t = '<table><thead><tr><th id="attr_key">属性</th><th id="attr_val" colspan="2">値</th></tr></thead><tbody>'
+        for (var k in e.features[0].properties) {
+          var v = e.features[0].properties[k]
+          if (k == '自治体面積') {
+            var pair = v.split('|')
+            html_t += '<tr><td rowspan="' + pair.length + '">' + k + '</td>'
+            for (var n = 0; n < pair.length; n++) {
+              var vv = pair[n].split(':')
+              if (n == 0) {
+                html_t += '<td>' + vv[0] + '</td><td>' + vv[1] + '</td></tr>'
+              }
+              else {
+                html_t += '<tr><td>' + vv[0] + '</td><td>' + vv[1] + '</td></tr>'
+              }
+            }
+          }
+          else {
+            html_t += '<tr><td>' + k + '</td><td colspan="2">' + v + '</td></tr>'
+          }
+
+          if (k == 'ZETTAICODE') {
+            abs_no = v
+            console.log(abs_no)
+          }
+        }
+        html_t += '</tbody></table>'
+        attr_div.innerHTML = html_t
+
+        map.setLayoutProperty('envpoints_basin', 'visibility', 'visible')
+        map.setFilter('envpoints_basin', ['==', ['get', 'cat'], abs_no])
+        var basin_src = map.querySourceFeatures('envpoints_basin', {
+          sourceLayer: 'envpoints_basin',
+          filter: ['==', ['get', 'cat'], abs_no]
+        })
+        console.log(basin_src)
+      }
+    });
+
+    map.on('click', function (e) {
+      if (bOnEnvpoint == false) {
+        var attr_div = document.getElementById("attr")
+        attr_div.style.removeProperty('bottom')
+        attr_div.innerHTML = ''
+        attr_div.style.display = 'none'
+        map.setLayoutProperty('envpoints_basin', 'visibility', 'none')
+      }
+    });
+
+    map.on('mouseenter', 'envpoints', function () {
+      map.getCanvas().style.cursor = 'pointer';
+      bOnEnvpoint = true;
+    });
+
+    map.on('mouseleave', 'envpoints', function () {
+      map.getCanvas().style.cursor = '';
+      bOnEnvpoint = false;
+    });
+
+    onBgmapChanged = function () {
+      var map_select = document.getElementsByName("map_select")
+      for (var i = 0; i < map_select.length; i++) {
+        if (map_select[i].checked) {
+          map.setLayoutProperty(map_select[i].value, 'visibility', 'visible')
+        }
+        else {
+          map.setLayoutProperty(map_select[i].value, 'visibility', 'none')
+        }
+      }
+    }
+
+    function toggleVisible(e) {
+      console.log(e.id)
+      ck = document.getElementById(e.id).checked
+      if (e.id == 'riverline') {
+        map.setLayoutProperty('niaes_network_line', 'visibility', ck ? 'visible' : 'none')
+        map.setLayoutProperty('niaes_network_text', 'visibility', ck ? 'visible' : 'none')
+        map.setLayoutProperty('niaes_network_arrow', 'visibility', ck ? 'visible' : 'none')
+      }
+      else if (e.id == 'envpoints') {
+        map.setLayoutProperty('envpoints', 'visibility', ck ? 'visible' : 'none')
+      }
+      else if (e.id == 'basins') {
+        map.setLayoutProperty('envpoints_basin', 'visibility', ck ? 'visible' : 'none')
+      }
+    }
+  </script>
+
+</body>
+
+</html>
