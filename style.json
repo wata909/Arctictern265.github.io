@@ -8,8 +8,8 @@
     "zoom": 11,
     "bearing": 0,
     "pitch": 0,
-    "sprite": "//arctictern265.github.io/sprite/sprite",
-    "glyphs": "//arctictern265.github.io/fonts/{fontstack}/{range}.pbf",
+    "sprite": "https://arctictern265.github.io/sprite/sprite",
+    "glyphs": "https://arctictern265.github.io/fonts/{fontstack}/{range}.pbf",
     "sources": {
         "pale-tiles": {
             "type": "raster",
