@@ -8,8 +8,8 @@
     "zoom": 11,
     "bearing": 0,
     "pitch": 0,
-    "sprite": "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/sprite/sprite",
-    "glyphs": "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/font/{fontstack}/{range}.pbf",
+    "sprite": "./sprite",
+    "glyphs": "./font/{fontstack}/{range}.pbf",
     "sources": {
         "pale-tiles": {
             "type": "raster",
@@ -42,14 +42,14 @@
         "niaes_network_line": {
             "type": "vector",
             "tiles": [
-                "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/network_all/{z}/{x}/{y}.pbf"
+                "./network/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 15
         },
         "envpoints": {
             "type": "vector",
             "tiles": [
-                "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/envpoints/{z}/{x}/{y}.pbf"
+                "./envpoints/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 15,
             "minzoom": 1,
@@ -58,7 +58,7 @@
         "envpoints_basin": {
             "type": "vector",
             "tiles": [
-                "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/envpoints_basin/{z}/{x}/{y}.pbf"
+                "./envpoints_basin/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 16,
             "minzoom": 8
