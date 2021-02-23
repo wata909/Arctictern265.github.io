@@ -9,7 +9,7 @@
     "bearing": 0,
     "pitch": 0,
     "sprite": "./sprite/sprite",
-    "glyphs": "./fonts/{fontstack}/{range}.pbf",
+    "glyphs": "mapbox://fonts/yamate/{fontstack}/{range}.pbf",
     "sources": {
         "pale-tiles": {
             "type": "raster",
