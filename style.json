@@ -49,7 +49,7 @@
         "envpoints": {
             "type": "vector",
             "tiles": [
-                "//mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/envpoints/{z}/{x}/{y}.pbf"
+                "https://github.com/Arctictern265/niaes_rivdb/tree/master/envpoints/envpoints/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 15,
             "minzoom": 1,
