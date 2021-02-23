@@ -8,8 +8,8 @@
     "zoom": 11,
     "bearing": 0,
     "pitch": 0,
-    "sprite": "https://github.com/Arctictern265/Arctictern265.github.io/sprite",
-    "glyphs": "https://github.com/Arctictern265/Arctictern265.github.io/font/{fontstack}/{range}.pbf",
+    "sprite": "https://arctictern265.github.io/sprite",
+    "glyphs": "https://arctictern265.github.io/font/{fontstack}/{range}.pbf",
     "sources": {
         "pale-tiles": {
             "type": "raster",
@@ -42,14 +42,14 @@
         "niaes_network_line": {
             "type": "vector",
             "tiles": [
-                "https://github.com/Arctictern265/Arctictern265.github.io/network/{z}/{x}/{y}.pbf"
+                "https://arctictern265.github.io/network/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 15
         },
         "envpoints": {
             "type": "vector",
             "tiles": [
-                "https://github.com/Arctictern265/Arctictern265.github.io/envpoints/{z}/{x}/{y}.pbf"
+                "https://arctictern265.github.io/envpoints/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 15,
             "minzoom": 1,
@@ -58,7 +58,7 @@
         "envpoints_basin": {
             "type": "vector",
             "tiles": [
-                "https://github.com/Arctictern265/Arctictern265.github.io/envpoints_basin/{z}/{x}/{y}.pbf"
+                "https://arctictern265.github.io/envpoints_basin/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 16,
             "minzoom": 8
