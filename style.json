@@ -58,7 +58,7 @@
         "envpoints_basin": {
             "type": "vector",
             "tiles": [
-                "https://arctictern265.github.io/envpoints_basin/{z}/{x}/{y}.pbf"
+                "envpoints_basin/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 16,
             "minzoom": 8
