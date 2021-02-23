@@ -60,7 +60,7 @@
             "tiles": [
                 "http://mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/envpoints_basin/{z}/{x}/{y}.pbf"
             ],
-            "maxzoom": 16,
+            "maxzoom": 15,
             "minzoom": 8
         }
     },
