@@ -8,8 +8,8 @@
     "zoom": 11,
     "bearing": 0,
     "pitch": 0,
-    "sprite": "./sprite",
-    "glyphs": "./font/{fontstack}/{range}.pbf",
+    "sprite": "./sprite/sprite",
+    "glyphs": "./fonts/{fontstack}/{range}.pbf",
     "sources": {
         "pale-tiles": {
             "type": "raster",
