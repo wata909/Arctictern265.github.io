@@ -8,8 +8,8 @@
     "zoom": 11,
     "bearing": 0,
     "pitch": 0,
-    "sprite": "./sprite/sprite",
-    "glyphs": "mapbox://fonts/yamate/{fontstack}/{range}.pbf",
+    "sprite": "https://arctictern265.github.io/sprite",
+    "glyphs": "https://arctictern265.github.io/fonts/{fontstack}/{range}.pbf",
     "sources": {
         "pale-tiles": {
             "type": "raster",
