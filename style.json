@@ -8,7 +8,7 @@
     "zoom": 11,
     "bearing": 0,
     "pitch": 0,
-    "sprite": "https://arctictern265.github.io/sprite",
+    "sprite": "https://arctictern265.github.io/sprite/sprite",
     "glyphs": "https://arctictern265.github.io/fonts/{fontstack}/{range}.pbf",
     "sources": {
         "pale-tiles": {
@@ -49,7 +49,7 @@
         "envpoints": {
             "type": "vector",
             "tiles": [
-                "./envpoints/{z}/{x}/{y}.pbf"
+                "https://arctictern265.github.io/envpoints/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 15,
             "minzoom": 1,
