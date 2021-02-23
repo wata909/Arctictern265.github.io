@@ -42,7 +42,7 @@
         "niaes_network_line": {
             "type": "vector",
             "tiles": [
-                "//mf-atelier.sakura.ne.jp/Bm2b5Ka5YhZFY74U/network/{z}/{x}/{y}.pbf"
+                "https://arctictern265.github.io//network/{z}/{x}/{y}.pbf"
             ],
             "maxzoom": 15
         },
