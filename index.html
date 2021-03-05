@@ -82,6 +82,8 @@
     <label for="blank-tiles">白地図</label><br />
     <input type="radio" id="photo-tiles" name="map_select" value="photo-tiles" onChange="onBgmapChanged()" />
     <label for="photo-tiles">空中写真</label><br />
+    <input type="checkbox" id="ksj_lu" name="map_select" value="ksj_lu" onchange="toggleVisible(this)" />
+    <label for="ksj_lu">国土数値情報　土地利用</label>
     <input id="riverline" class="disp_layer" type="checkbox" name="layers" value="riverline" checked="checked"
       onchange="toggleVisible(this)">
     <label for="riverline">河川</label><br />
@@ -191,6 +193,9 @@
       }
       else if (e.id == 'basins') {
         map.setLayoutProperty('envpoints_basin', 'visibility', ck ? 'visible' : 'none')
+      }
+      else if (e.id == 'ksj_lu') {
+        map.setLayoutProperty('ksj_lu', 'visibility', ck ? 'visible': 'none')
       }
     }
   </script>

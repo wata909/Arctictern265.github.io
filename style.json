@@ -39,6 +39,14 @@
             ],
             "tileSize": 256
         },
+        "ksj_lu": {
+            "type": "raster",
+            "tiles": [
+                "https://arctictern265.github.io/ksj_lu/{z}/{x}/{y}.png"
+            ],
+            "tileSize": 256,
+            "maxzoom": 13
+        },
         "niaes_network_line": {
             "type": "vector",
             "tiles": [
@@ -101,6 +109,15 @@
             "source": "photo-tiles",
             "layout": {
                 "visibility": "none"
+            }
+        },
+        {
+            "id": "ksj_raster",
+            "type": "raster",
+            "source": "ksj_raster",
+            "layout": {
+                "visibility": "none",
+                "raster-opacity": 0.7
             }
         },
         {
