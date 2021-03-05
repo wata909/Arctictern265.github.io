@@ -116,7 +116,9 @@
             "type": "raster",
             "source": "ksj_lu",
             "layout": {
-                "visibility": "none",
+                "visibility": "none"
+            },
+            "paint": {
                 "raster-opacity": 0.7
             }
         },
